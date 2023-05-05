@@ -47,29 +47,20 @@ class _MarketPlaceHomeState extends State<MarketPlaceHome> {
         children: _widgetOptions,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xffF1F2F4),
-        selectedItemColor: const Color(0xff4BB198),
-        unselectedItemColor: const Color(0xff93959D),
-        selectedIconTheme: const IconThemeData(
-            color: Color(0xff4BB198),
-        ),
-        unselectedIconTheme: const IconThemeData(
-            color: Color(0xff93959D),
-        ),
         currentIndex: _selectedIndex,
         onTap: (index) => _handlePageTap(index),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_filled),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: "Characters",
+            icon: Icon(Icons.confirmation_num_outlined),
+            label: "Voucher",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.quiz),
-            label: "Quiz",
+            icon: Icon(Icons.account_balance_wallet_outlined),
+            label: "Wallet",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

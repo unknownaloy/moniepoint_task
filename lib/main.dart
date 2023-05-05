@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:market_place_app/presentation/market_place_home.dart';
+import 'package:market_place_app/themes/dark_theme/dark_theme.dart';
+import 'package:market_place_app/themes/light_theme/light_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Market Place',
+      debugShowCheckedModeBanner: false,
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
+      themeMode: ThemeMode.light,
       home: const MarketPlaceHome(),
     );
   }
