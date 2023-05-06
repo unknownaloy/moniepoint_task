@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:market_place_app/data/model/item_model.dart';
+import 'package:market_place_app/presentation/home/components/rating_review_sold_tile.dart';
 
 class ProductFullView extends StatelessWidget {
   const ProductFullView({
@@ -12,7 +12,6 @@ class ProductFullView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final format =  NumberFormat.compact();
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -46,6 +45,8 @@ class ProductFullView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+
+                  // Full item image
                   Container(
                     color: const Color(0xffF7F7F7),
                     height: 336,
@@ -87,52 +88,45 @@ class ProductFullView extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  const SizedBox(height: 24,),
-
+                  const SizedBox(
+                    height: 24,
+                  ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Icon(Icons.storefront_outlined),
-                      const SizedBox(width: 8,),
-                      Text(item.shopName, style: Theme.of(context).textTheme.labelLarge,),
-                    ],
-                  ),
-
-                  const SizedBox(height: 16,),
-
-                  Text(item.name, style: Theme.of(context).textTheme.titleLarge,),
-
-                  const SizedBox(height: 24,),
-
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(Icons.star, color: Color(0xffFAB058),),
-                          const SizedBox(width: 4,),
-                          Text("${item.rating} Ratings", style: Theme.of(context).textTheme.titleMedium,)
-                        ],
+                      const SizedBox(
+                        width: 8,
                       ),
-                      const CircleAvatar(radius: 2, backgroundColor: Color(0xff989AA2),),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text("${format.format(item.reviews)} Reviews", style: Theme.of(context).textTheme.titleMedium,)
-                        ],
-                      ),
-                      const CircleAvatar(radius: 2, backgroundColor: Color(0xff989AA2),),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text("${format.format(item.soldCount)} Sold", style: Theme.of(context).textTheme.titleMedium,)
-                        ],
+                      Text(
+                        item.shopName,
+                        style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    item.name,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  RatingReviewSoldTile(
+                    rating: item.rating,
+                    reviews: item.reviews,
+                    soldCount: item.soldCount,
+                  ),
+
+                  const SizedBox(height: 40,),
+
+                  // Row(
+                  //   children: [
+                  //     Text(),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
