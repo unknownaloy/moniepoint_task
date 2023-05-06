@@ -5,10 +5,10 @@ import 'package:market_place_app/themes/light_theme/light_text_theme.dart';
 ThemeData lightTheme() {
   return ThemeData.light().copyWith(
     appBarTheme: const AppBarTheme(
-      color: Color(0xffEDF0F5),
+      color: Colors.white,
       elevation: 0.0,
       iconTheme: IconThemeData(
-        color: Colors.black,
+        color: Color(0xff414152),
       ),
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,

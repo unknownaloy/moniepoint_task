@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:market_place_app/presentation/home/home_screen.dart';
 
 class MarketPlaceHome extends StatefulWidget {
   const MarketPlaceHome({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class _MarketPlaceHomeState extends State<MarketPlaceHome> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = [
-    Container(color: Colors.orangeAccent,),
+    const HomeScreen(),
     Container(color: Colors.purpleAccent,),
     Container(color: Colors.blueAccent,),
     Container(color: Colors.brown,),
