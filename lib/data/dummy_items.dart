@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:market_place_app/data/model/item_model.dart';
 
-final List<ItemModel> dummyItems = generateDummyItems(10);
+final List<ItemModel> dummyItems = _generateDummyItems(10);
 
-List<ItemModel> generateDummyItems(int count) {
+List<ItemModel> _generateDummyItems(int count) {
   const List<String> shopNames = ['Shop A', 'Shop B', 'Shop C'];
   const List<String> brandNames = ['ChArmkpR', 'Gucci', 'Prada'];
   const List<String> colors = ['Red', 'Blue', 'Green'];
@@ -31,6 +31,8 @@ List<ItemModel> generateDummyItems(int count) {
       currency: '\$',
       amount: random.nextDouble() * 100,
       soldCount: random.nextInt(1000),
+      assetName: "",
+      isLiked: random.nextBool(),
     );
 
     items.add(item);

@@ -10,6 +10,8 @@ class ItemModel {
     required this.currency,
     required this.amount,
     required this.soldCount,
+    required this.assetName,
+    required this.isLiked,
   });
 
   final String shopName;
@@ -22,4 +24,6 @@ class ItemModel {
   final String currency;
   final double amount;
   final int soldCount;
+  final String assetName;
+  final bool isLiked;
 }
