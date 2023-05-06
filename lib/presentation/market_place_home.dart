@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:market_place_app/presentation/home/home_screen.dart';
+import 'package:market_place_app/presentation/home/screens/home_screen.dart';
 
 class MarketPlaceHome extends StatefulWidget {
   const MarketPlaceHome({Key? key}) : super(key: key);

@@ -8,5 +8,7 @@ final TextTheme kLightTextTheme = TextTheme(
   bodyMedium: kLightBodyMediumTextStyle,
   bodyLarge: kLightBodyLargeTextStyle, // Implemented
   titleLarge: kLightTitleLargeTextStyle, // Implemented
+  titleMedium: kLightTitleMediumTextStyle,
+  labelLarge: kLightLabelLargeTextStyle,
   labelSmall: kLightLabelSmallTextStyle, // Implemented
 );

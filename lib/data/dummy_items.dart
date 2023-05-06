@@ -15,6 +15,13 @@ List<ItemModel> _generateDummyItems(int count) {
     'Item 3'
   ];
 
+  List<String> assetVariations = [
+    "assets/images/shirt_01.png",
+    "assets/images/shirt_02.png",
+    "assets/images/shirt_03.png",
+    "assets/images/shirt_04.png",
+  ];
+
   final List<ItemModel> items = [];
 
   final random = Random();
@@ -37,6 +44,7 @@ List<ItemModel> _generateDummyItems(int count) {
       amount: double.parse(amount),
       soldCount: random.nextInt(1000),
       assetName: "assets/images/shirt_02.png",
+      assetVariations: assetVariations,
       isLiked: random.nextBool(),
     );
 

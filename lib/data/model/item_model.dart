@@ -11,6 +11,7 @@ class ItemModel {
     required this.amount,
     required this.soldCount,
     required this.assetName,
+    required this.assetVariations,
     required this.isLiked,
   });
 
@@ -25,5 +26,6 @@ class ItemModel {
   final double amount;
   final int soldCount;
   final String assetName;
+  final List<String> assetVariations;
   final bool isLiked;
 }
