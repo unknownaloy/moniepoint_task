@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:market_place_app/presentation/home/components/bullet_point_widget.dart';
 
-class DescriptionContent extends StatefulWidget {
-  const DescriptionContent({super.key});
+class DescriptionSection extends StatefulWidget {
+  const DescriptionSection({super.key});
 
   @override
-  State<DescriptionContent> createState() => _DescriptionContentState();
+  State<DescriptionSection> createState() => _DescriptionSectionState();
 }
 
-class _DescriptionContentState extends State<DescriptionContent> {
+class _DescriptionSectionState extends State<DescriptionSection> {
   bool _isExpanded = true;
 
   @override

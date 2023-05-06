@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:market_place_app/data/model/item_model.dart';
 import 'package:market_place_app/presentation/home/components/custom_cell_content.dart';
-import 'package:market_place_app/presentation/home/components/description_content.dart';
+import 'package:market_place_app/presentation/home/components/description_section.dart';
 import 'package:market_place_app/presentation/home/components/rating_review_sold_tile.dart';
+import 'package:market_place_app/presentation/home/components/shipping_section.dart';
 
 class ProductFullView extends StatelessWidget {
   const ProductFullView({
@@ -220,9 +221,19 @@ class ProductFullView extends StatelessWidget {
 
 
                   // Description
-                  const DescriptionContent(),
+                  const DescriptionSection(),
 
-                  const Divider()
+                  const Divider(),
+
+                  const SizedBox(height: 24,),
+
+                  const ShippingSection(),
+
+                  const SizedBox(height: 24,),
+
+                  const Divider(),
+
+
                 ],
               ),
             ),
