@@ -3,6 +3,7 @@ import 'package:market_place_app/data/model/item_model.dart';
 import 'package:market_place_app/presentation/home/components/custom_cell_content.dart';
 import 'package:market_place_app/presentation/home/components/description_section.dart';
 import 'package:market_place_app/presentation/home/components/rating_review_sold_tile.dart';
+import 'package:market_place_app/presentation/home/components/seller_information.dart';
 import 'package:market_place_app/presentation/home/components/shipping_section.dart';
 
 class ProductFullView extends StatelessWidget {
@@ -227,13 +228,21 @@ class ProductFullView extends StatelessWidget {
 
                   const SizedBox(height: 24,),
 
+                  // Shipping section
                   const ShippingSection(),
 
                   const SizedBox(height: 24,),
 
                   const Divider(),
 
+                  const SizedBox(height: 24,),
 
+                  // Seller section
+                  const SellerInformation(),
+
+                  const SizedBox(height: 24,),
+
+                  const Divider(),
                 ],
               ),
             ),
