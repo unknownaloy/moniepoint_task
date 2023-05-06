@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:market_place_app/presentation/home/components/carousel_widget.dart';
+import 'package:market_place_app/presentation/home/components/icon_and_label.dart';
 import 'package:market_place_app/presentation/home/components/persistent_header.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -61,20 +62,98 @@ class HomeScreen extends StatelessWidget {
                   handle:
                       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 ),
-                SliverPersistentHeader(delegate: PersistentHeader(
-                  color: const Color(0xffF9F9F9),
-                  widget: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Best Product", style: Theme.of(context).textTheme.titleLarge,),
-                        Text("See more", style: Theme.of(context).textTheme.bodyLarge,),
-                      ],
+                SliverToBoxAdapter(
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      top: 16,
+                      right: 16,
+                      bottom: 32,
+                    ),
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: const [
+                          IconAndLabel(
+                            label: "Category",
+                            icon: Icon(
+                              Icons.category_outlined,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 32,
+                          ),
+                          IconAndLabel(
+                            label: "Flight",
+                            icon: Icon(
+                              Icons.flight_outlined,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 32,
+                          ),
+                          IconAndLabel(
+                            label: "Bill",
+                            icon: Icon(
+                              Icons.description_outlined,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 32,
+                          ),
+                          IconAndLabel(
+                            label: "Data",
+                            icon: Icon(
+                              Icons.language,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 32,
+                          ),
+                          IconAndLabel(
+                            label: "Category",
+                            icon: Icon(
+                              Icons.category,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 32,
+                          ),
+                          IconAndLabel(
+                            label: "Top Up",
+                            icon: Icon(
+                              Icons.toll_outlined,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),),
+                ),
+                SliverPersistentHeader(
+                  delegate: PersistentHeader(
+                    color: const Color(0xffF9F9F9),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Best Product",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          Text(
+                            "See more",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             );
           },

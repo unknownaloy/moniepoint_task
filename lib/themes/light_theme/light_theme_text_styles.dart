@@ -39,7 +39,7 @@ final kLightBodyMediumTextStyle = _baseFont.copyWith(
 
 
 final kLightBodySmallTextStyle = _baseFont.copyWith(
-  color: Colors.black,
+  color: const Color(0xffD1D1D1),
   fontSize: 14,
 );
 

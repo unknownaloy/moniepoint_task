@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class PersistentHeader extends SliverPersistentHeaderDelegate {
   PersistentHeader({
-    required this.widget,
+    required this.child,
     this.color = Colors.white,
     this.height = 56.0,
   });
 
-  final Widget widget;
+  final Widget child;
   final Color color;
   final double height;
 
@@ -20,7 +20,7 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
       child: Container(
         margin: EdgeInsets.zero,
         color: color,
-        child: Center(child: widget),
+        child: Center(child: child),
       ),
     );
   }

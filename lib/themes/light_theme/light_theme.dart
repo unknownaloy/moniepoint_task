@@ -12,6 +12,9 @@ ThemeData lightTheme() {
         color: Color(0xff414152),
       ),
     ),
+    iconTheme: const IconThemeData(
+      color: Color(0xff7C7E87),
+    ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     textTheme: kLightTextTheme,
     chipTheme: const ChipThemeData(
