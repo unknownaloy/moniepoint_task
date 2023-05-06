@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:market_place_app/data/dummy_items.dart';
 import 'package:market_place_app/presentation/home/components/carousel_widget.dart';
-import 'package:market_place_app/presentation/home/components/icon_and_label.dart';
 import 'package:market_place_app/presentation/home/components/persistent_header.dart';
 import 'package:market_place_app/presentation/home/components/product_actions.dart';
+import 'package:market_place_app/presentation/home/components/product_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -77,16 +78,14 @@ class HomeScreen extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 16,
+                childAspectRatio: 3/4,
               ),
               delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                  return Container(
-                    alignment: Alignment.center,
-                    color: Colors.teal[100 * (index % 9)],
-                    child: Text('grid item $index'),
-                  );
+                      final item = dummyItems[index];
+                  return ProductCard(item: item);
                 },
-                childCount: 20,
+                childCount: dummyItems.length,
               ),
             ),
           )

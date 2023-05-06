@@ -35,6 +35,7 @@ final kLightBodyLargeTextStyle = _baseFont.copyWith(
 final kLightBodyMediumTextStyle = _baseFont.copyWith(
   color: Colors.black,
   fontSize: 16,
+  fontWeight: FontWeight.w700,
 );
 
 

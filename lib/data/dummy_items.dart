@@ -17,21 +17,26 @@ List<ItemModel> _generateDummyItems(int count) {
 
   final List<ItemModel> items = [];
 
+  final random = Random();
   for (int i = 0; i < count; i++) {
-    final random = Random();
+    // Generate a rating between 1.0^ and 5.0^ to fixed 2 decimal places as String
+    final rating = (1.0 + random.nextDouble() * 4.0).toStringAsFixed(1);
 
+    // Generate a fixed 2 decimal places amount as a string
+    final amount = (random.nextDouble() * 100).toStringAsFixed(2);
     final item = ItemModel(
       shopName: shopNames[random.nextInt(shopNames.length)],
       brandName: brandNames[random.nextInt(brandNames.length)],
       color: colors[random.nextInt(colors.length)],
       category: categories[random.nextInt(categories.length)],
-      name: itemNames[random.nextInt(itemNames.length)],
-      rating: random.nextDouble() * 5,
+      // name: itemNames[random.nextInt(itemNames.length)],
+      name: "Essentials Men's Short-Sleeve Crewneck T-Shirt",
+      rating: double.parse(rating),
       reviews: random.nextInt(100),
       currency: '\$',
-      amount: random.nextDouble() * 100,
+      amount: double.parse(amount),
       soldCount: random.nextInt(1000),
-      assetName: "",
+      assetName: "assets/images/shirt_02.png",
       isLiked: random.nextBool(),
     );
 
