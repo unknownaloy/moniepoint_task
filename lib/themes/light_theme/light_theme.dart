@@ -17,9 +17,6 @@ ThemeData lightTheme() {
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     textTheme: kLightTextTheme,
-    chipTheme: const ChipThemeData(
-      backgroundColor: Color(0xffF2BC8C),
-    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       elevation: 0.0,
       selectedItemColor: const Color(0xff202020),
@@ -37,6 +34,10 @@ ThemeData lightTheme() {
       unselectedIconTheme: const IconThemeData(
         color: Color(0xff93959D),
       ),
+    ),
+    dividerTheme: const DividerThemeData(
+      thickness: 1,
+      color: Color(0xffD1D1D1),
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(

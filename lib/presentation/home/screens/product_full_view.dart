@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:market_place_app/data/model/item_model.dart';
+import 'package:market_place_app/presentation/home/components/custom_cell_content.dart';
+import 'package:market_place_app/presentation/home/components/description_content.dart';
 import 'package:market_place_app/presentation/home/components/rating_review_sold_tile.dart';
 
 class ProductFullView extends StatelessWidget {
@@ -45,7 +47,6 @@ class ProductFullView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-
                   // Full item image
                   Container(
                     color: const Color(0xffF7F7F7),
@@ -120,13 +121,108 @@ class ProductFullView extends StatelessWidget {
                     soldCount: item.soldCount,
                   ),
 
-                  const SizedBox(height: 40,),
+                  const SizedBox(
+                    height: 40,
+                  ),
 
-                  // Row(
-                  //   children: [
-                  //     Text(),
-                  //   ],
-                  // ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(
+                              left: 16, right: 16, bottom: 16),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Color(0xff4BB198),
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            "About Item",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(
+                              left: 16, right: 16, bottom: 16),
+                          child: Text(
+                            "Reviews",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(
+                    height: 16,
+                  ),
+
+                  Table(
+                    // defaultColumnWidth: const IntrinsicColumnWidth(),
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    border: const TableBorder(
+                      bottom: BorderSide(
+                        color: Color(0xffD1D1D1),
+                      ),
+                    ),
+                    children: [
+                      /// Gender
+                      TableRow(
+                        children: <Widget>[
+                          CustomCellContent(
+                            title: "Brand",
+                            body: item.brandName,
+                          ),
+                          CustomCellContent(
+                            title: "Color",
+                            body: item.color,
+                          ),
+                        ],
+                      ),
+
+                      TableRow(
+                        children: <Widget>[
+                          CustomCellContent(
+                            title: "Category",
+                            body: item.category,
+                          ),
+                          const CustomCellContent(
+                            title: "Material",
+                            body: "dummy material",
+                          ),
+                        ],
+                      ),
+
+                      const TableRow(
+                        children: <Widget>[
+                          CustomCellContent(
+                            padding: EdgeInsets.only(bottom: 32),
+                            title: "Condition",
+                            body: "New",
+                          ),
+                          CustomCellContent(
+                            padding: EdgeInsets.only(bottom: 32),
+                            title: "Heavy",
+                            body: "200 g",
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 8,),
+
+
+
+                  // Description
+                  const DescriptionContent(),
+
+                  const Divider()
                 ],
               ),
             ),
