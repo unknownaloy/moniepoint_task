@@ -4,6 +4,7 @@ import 'package:market_place_app/themes/light_theme/light_text_theme.dart';
 
 ThemeData lightTheme() {
   return ThemeData.light().copyWith(
+    scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
       color: Colors.white,
       elevation: 0.0,

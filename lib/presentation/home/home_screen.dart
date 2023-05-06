@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:market_place_app/presentation/home/components/carousel_widget.dart';
+import 'package:market_place_app/presentation/home/components/persistent_header.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +46,8 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  background: Container(
-                    width: double.infinity,
-                    color: Colors.orangeAccent,
-                  ),
+                flexibleSpace: const FlexibleSpaceBar(
+                  background: CarouselWidget(),
                 ),
               ),
             ),
@@ -63,27 +61,20 @@ class HomeScreen extends StatelessWidget {
                   handle:
                       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 ),
-                SliverPadding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                  sliver: SliverToBoxAdapter(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            "Biography:",
-                            style: Theme.of(context).textTheme.displayMedium,
-                            semanticsLabel: 'Biography',
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                        ],
-                      ),
+                SliverPersistentHeader(delegate: PersistentHeader(
+                  color: const Color(0xffF9F9F9),
+                  widget: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Best Product", style: Theme.of(context).textTheme.titleLarge,),
+                        Text("See more", style: Theme.of(context).textTheme.bodyLarge,),
+                      ],
                     ),
                   ),
-                ),
+                ),),
               ],
             );
           },
