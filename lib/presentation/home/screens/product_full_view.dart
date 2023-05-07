@@ -6,13 +6,134 @@ import 'package:market_place_app/presentation/home/components/rating_review_sold
 import 'package:market_place_app/presentation/home/components/seller_information.dart';
 import 'package:market_place_app/presentation/home/components/shipping_section.dart';
 
-class ProductFullView extends StatelessWidget {
+class ProductFullView extends StatefulWidget {
   const ProductFullView({
     super.key,
     required this.item,
   });
 
   final ItemModel item;
+
+  @override
+  State<ProductFullView> createState() => _ProductFullViewState();
+}
+
+class _ProductFullViewState extends State<ProductFullView>
+    with TickerProviderStateMixin {
+  late final AnimationController _upperSectionController;
+  late final Animation<double> _upperSectionOpacity;
+
+  late final AnimationController _upperMarginController;
+  late final Animation<EdgeInsetsGeometry> _upperMarginAnimation;
+
+  late final AnimationController _bottomController;
+  late final Animation<double> _bottomOpacityAnimation;
+
+  late final AnimationController _bottomSlideController;
+  late final Animation<Offset> _bottomSlideAnimation;
+
+  late final AnimationController _middleOpacityController;
+  late final Animation<double> _middleOpacityAnimation;
+
+  void _startAnimations() async {
+    _upperSectionController.forward();
+
+    await Future.delayed(const Duration(milliseconds: 500));
+    _upperMarginController.forward();
+
+    _middleOpacityController.forward();
+
+    _bottomController.forward();
+    await Future.delayed(const Duration(milliseconds: 250));
+
+    _bottomSlideController.forward();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _upperSectionController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    _upperSectionOpacity = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _upperSectionController,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    // This has to run for half the time of [_upperSectionController]
+    _upperMarginController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+
+    _upperMarginAnimation = Tween<EdgeInsetsGeometry>(
+      begin: const EdgeInsets.only(top: 56),
+      end: EdgeInsets.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _upperMarginController,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    _bottomController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+
+    _bottomOpacityAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _bottomController,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    _bottomSlideController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+
+    _bottomSlideAnimation =
+        Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero).animate(
+      CurvedAnimation(
+        parent: _bottomSlideController,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    _middleOpacityController = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        milliseconds: 500,
+      ),
+    );
+
+    _middleOpacityAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _middleOpacityController,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    _startAnimations();
+  }
+
+  @override
+  void dispose() {
+    _upperSectionController.dispose();
+    _upperMarginController.dispose();
+
+    _bottomController.dispose();
+    _bottomSlideController.dispose();
+
+    _middleOpacityController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,220 +160,299 @@ class ProductFullView extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Full item image
-                  Container(
-                    color: const Color(0xffF7F7F7),
-                    height: 336,
-                    width: double.infinity,
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Image.asset(item.assetName),
+      body: AnimatedBuilder(
+        animation: _upperSectionController,
+        builder: (context, child) => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Upper Section
+                    Opacity(
+                      opacity: _upperSectionOpacity.value,
+                      child: Container(
+                        margin: _upperMarginAnimation.value,
+                        color: const Color(0xffF7F7F7),
+                        height: 336,
+                        width: double.infinity,
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: Image.asset(widget.item.assetName),
+                            ),
+                            Positioned(
+                              top: 8,
+                              left: 8,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ...widget.item.assetVariations.map(
+                                    (variation) => Container(
+                                      margin: const EdgeInsets.only(bottom: 8),
+                                      height: 56,
+                                      width: 48,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        // color: const Color(0xffCECECE),
+                                        color: Colors.yellowAccent,
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.asset(
+                                          variation,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                        Positioned(
-                          top: 8,
-                          left: 8,
-                          child: Column(
+                      ),
+                    ),
+
+                    // Middle section
+                    Opacity(
+                      opacity: _middleOpacityAnimation.value,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const SizedBox(
+                            height: 24,
+                          ),
+                          Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              ...item.assetVariations.map(
-                                (variation) => Container(
-                                  margin: const EdgeInsets.only(bottom: 8),
-                                  height: 56,
-                                  width: 48,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    // color: const Color(0xffCECECE),
-                                    color: Colors.yellowAccent,
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      variation,
-                                      fit: BoxFit.cover,
+                              const Icon(Icons.storefront_outlined),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                widget.item.shopName,
+                                style: Theme.of(context).textTheme.labelLarge,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            widget.item.name,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                          RatingReviewSoldTile(
+                            rating: widget.item.rating,
+                            reviews: widget.item.reviews,
+                            soldCount: widget.item.soldCount,
+                          ),
+
+                          const SizedBox(
+                            height: 40,
+                          ),
+
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                      left: 16, right: 16, bottom: 16),
+                                  decoration: const BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Color(0xff4BB198),
+                                        width: 2,
+                                      ),
                                     ),
+                                  ),
+                                  child: Text(
+                                    "About Item",
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                      left: 16, right: 16, bottom: 16),
+                                  child: Text(
+                                    "Reviews",
+                                    style:
+                                        Theme.of(context).textTheme.titleMedium,
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.storefront_outlined),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        item.shopName,
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    item.name,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  RatingReviewSoldTile(
-                    rating: item.rating,
-                    reviews: item.reviews,
-                    soldCount: item.soldCount,
-                  ),
 
-                  const SizedBox(
-                    height: 40,
-                  ),
+                          const SizedBox(
+                            height: 16,
+                          ),
 
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                              left: 16, right: 16, bottom: 16),
-                          decoration: const BoxDecoration(
-                            border: Border(
+                          Table(
+                            // defaultColumnWidth: const IntrinsicColumnWidth(),
+                            defaultVerticalAlignment:
+                                TableCellVerticalAlignment.middle,
+                            border: const TableBorder(
                               bottom: BorderSide(
-                                color: Color(0xff4BB198),
-                                width: 2,
+                                color: Color(0xffD1D1D1),
                               ),
                             ),
-                          ),
-                          child: Text(
-                            "About Item",
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                              left: 16, right: 16, bottom: 16),
-                          child: Text(
-                            "Reviews",
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                            children: [
+                              /// Gender
+                              TableRow(
+                                children: <Widget>[
+                                  CustomCellContent(
+                                    title: "Brand",
+                                    body: widget.item.brandName,
+                                  ),
+                                  CustomCellContent(
+                                    title: "Color",
+                                    body: widget.item.color,
+                                  ),
+                                ],
+                              ),
 
-                  const SizedBox(
-                    height: 16,
-                  ),
+                              TableRow(
+                                children: <Widget>[
+                                  CustomCellContent(
+                                    title: "Category",
+                                    body: widget.item.category,
+                                  ),
+                                  const CustomCellContent(
+                                    title: "Material",
+                                    body: "dummy material",
+                                  ),
+                                ],
+                              ),
 
-                  Table(
-                    // defaultColumnWidth: const IntrinsicColumnWidth(),
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                    border: const TableBorder(
-                      bottom: BorderSide(
-                        color: Color(0xffD1D1D1),
+                              const TableRow(
+                                children: <Widget>[
+                                  CustomCellContent(
+                                    padding: EdgeInsets.only(bottom: 32),
+                                    title: "Condition",
+                                    body: "New",
+                                  ),
+                                  CustomCellContent(
+                                    padding: EdgeInsets.only(bottom: 32),
+                                    title: "Heavy",
+                                    body: "200 g",
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          const SizedBox(
+                            height: 8,
+                          ),
+
+                          // Description
+                          const DescriptionSection(),
+
+                          const Divider(),
+
+                          const SizedBox(
+                            height: 24,
+                          ),
+
+                          // Shipping section
+                          const ShippingSection(),
+
+                          const SizedBox(
+                            height: 24,
+                          ),
+
+                          const Divider(),
+
+                          const SizedBox(
+                            height: 24,
+                          ),
+
+                          // Seller section
+                          const SellerInformation(),
+
+                          const SizedBox(
+                            height: 24,
+                          ),
+
+                          const Divider(),
+                        ],
                       ),
                     ),
+                  ],
+                ),
+              ),
+            ),
+            Opacity(
+              opacity: _bottomOpacityAnimation.value,
+              child: SlideTransition(
+                position: _bottomSlideAnimation,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                  width: double.infinity,
+                  color: Colors.red,
+                  child: Row(
                     children: [
-                      /// Gender
-                      TableRow(
-                        children: <Widget>[
-                          CustomCellContent(
-                            title: "Brand",
-                            body: item.brandName,
-                          ),
-                          CustomCellContent(
-                            title: "Color",
-                            body: item.color,
-                          ),
-                        ],
-                      ),
-
-                      TableRow(
-                        children: <Widget>[
-                          CustomCellContent(
-                            title: "Category",
-                            body: item.category,
-                          ),
-                          const CustomCellContent(
-                            title: "Material",
-                            body: "dummy material",
-                          ),
-                        ],
-                      ),
-
-                      const TableRow(
-                        children: <Widget>[
-                          CustomCellContent(
-                            padding: EdgeInsets.only(bottom: 32),
-                            title: "Condition",
-                            body: "New",
-                          ),
-                          CustomCellContent(
-                            padding: EdgeInsets.only(bottom: 32),
-                            title: "Heavy",
-                            body: "200 g",
-                          ),
-                        ],
+                      Text("18.00"),
+                      const Spacer(),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8),
+                                alignment: Alignment.center,
+                                decoration: const BoxDecoration(
+                                  color: Colors.blueAccent,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8),
+                                    bottomLeft: Radius.circular(8),
+                                  ),
+                                ),
+                                child: Text("1"),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8),
+                                alignment: Alignment.center,
+                                decoration: const BoxDecoration(
+                                  color: Colors.blueAccent,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(8),
+                                    bottomRight: Radius.circular(8),
+                                  ),
+                                ),
+                                child: Text("Buy Now"),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-
-                  const SizedBox(height: 8,),
-
-
-
-                  // Description
-                  const DescriptionSection(),
-
-                  const Divider(),
-
-                  const SizedBox(height: 24,),
-
-                  // Shipping section
-                  const ShippingSection(),
-
-                  const SizedBox(height: 24,),
-
-                  const Divider(),
-
-                  const SizedBox(height: 24,),
-
-                  // Seller section
-                  const SellerInformation(),
-
-                  const SizedBox(height: 24,),
-
-                  const Divider(),
-                ],
+                ),
               ),
             ),
-          ),
-          Container(
-            height: 64,
-            width: double.infinity,
-            color: Colors.red,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

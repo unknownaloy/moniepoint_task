@@ -5,11 +5,17 @@ import 'package:market_place_app/presentation/home/components/persistent_header.
 import 'package:market_place_app/presentation/home/components/product_actions.dart';
 import 'package:market_place_app/presentation/home/components/product_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -93,4 +99,7 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
