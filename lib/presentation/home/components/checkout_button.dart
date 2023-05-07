@@ -45,7 +45,7 @@ class CheckoutButton extends StatelessWidget {
                   flex: 2,
                   child: Container(
                     padding:
-                    const EdgeInsets.symmetric(vertical: 12),
+                    const EdgeInsets.symmetric(vertical: 14),
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(
                       color: Color(0xff4BB198),
@@ -78,7 +78,7 @@ class CheckoutButton extends StatelessWidget {
                   flex: 4,
                   child: Container(
                     padding:
-                    const EdgeInsets.symmetric(vertical: 16),
+                    const EdgeInsets.symmetric(vertical: 14),
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(
                       color: Color(0xff2B2D41),

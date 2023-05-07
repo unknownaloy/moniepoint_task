@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:market_place_app/presentation/home/screens/coming_soon.dart';
 import 'package:market_place_app/presentation/home/screens/home_screen.dart';
 
 class MarketPlaceHome extends StatefulWidget {
@@ -15,9 +16,9 @@ class _MarketPlaceHomeState extends State<MarketPlaceHome> {
 
   final List<Widget> _widgetOptions = [
     const HomeScreen(),
-    Container(color: Colors.purpleAccent,),
-    Container(color: Colors.blueAccent,),
-    Container(color: Colors.brown,),
+    const ComingSoon(),
+    const ComingSoon(),
+    const ComingSoon(),
   ];
 
   void _handlePageTap(int index) {

@@ -36,7 +36,10 @@ class _CarouselWidgetState extends State<CarouselWidget> {
     SizedBox(
       key: const Key("four"),
       width: double.infinity,
-      child: Image.asset("assets/images/carousel_03.jpg", fit: BoxFit.cover,),
+      child: Image.asset(
+        "assets/images/carousel_03.jpg",
+        fit: BoxFit.cover,
+      ),
     ),
     SizedBox(
       key: const Key("three"),
@@ -46,7 +49,6 @@ class _CarouselWidgetState extends State<CarouselWidget> {
         fit: BoxFit.cover,
       ),
     ),
-    
   ];
 
   @override
@@ -60,12 +62,12 @@ class _CarouselWidgetState extends State<CarouselWidget> {
 
       if (isLastIndex) {
         setState(() => _currentIndex = 0);
-        // _pageController.animateToPage(
-        //   _currentIndex,
-        //   duration: const Duration(seconds: 1),
-        //   curve: Curves.easeIn,
-        // );
-        _pageController.jumpToPage(_currentIndex);
+        // _pageController.jumpToPage(_currentIndex);
+        _pageController.animateToPage(
+          _currentIndex,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeIn,
+        );
       } else {
         setState(() => _currentIndex = _currentIndex + 1);
         _pageController.animateToPage(
