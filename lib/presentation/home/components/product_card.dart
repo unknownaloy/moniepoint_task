@@ -46,9 +46,9 @@ class ProductCard extends StatelessWidget {
                 right: 8,
                 child: item.isLiked
                     ? const Icon(
-                        Icons.favorite,
-                        color: Color(0xffE55986),
-                      )
+                  Icons.favorite,
+                  color: Color(0xffE55986),
+                )
                     : const Icon(Icons.favorite_border_outlined),
               ),
             ],
@@ -62,11 +62,9 @@ class ProductCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Flexible(
-                  child: Text(
-                    item.category,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
+                Text(
+                  item.category,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(
                   height: 4,
@@ -76,8 +74,8 @@ class ProductCard extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        height: 1.2,
-                      ),
+                    height: 1.2,
+                  ),
                 ),
 
                 const SizedBox(
@@ -102,6 +100,7 @@ class ProductCard extends StatelessWidget {
                         Text(
                           "${item.rating} / ${item.reviews}",
                           style: Theme.of(context).textTheme.bodySmall,
+                          overflow: TextOverflow.ellipsis,
                         )
                       ],
                     ),

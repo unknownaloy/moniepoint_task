@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen>
                 crossAxisCount: 2,
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 16,
-                childAspectRatio: 3 / 4,
+                mainAxisExtent: 256,
               ),
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {

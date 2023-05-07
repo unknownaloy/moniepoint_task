@@ -144,9 +144,12 @@ class _ProductFullViewState extends State<ProductFullView>
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(
-              Icons.favorite_border_outlined,
-            ),
+            icon: widget.item.isLiked
+                ? const Icon(
+                    Icons.favorite,
+                    color: Color(0xffE55986),
+                  )
+                : const Icon(Icons.favorite_border_outlined),
           ),
           IconButton(
             onPressed: () {},
