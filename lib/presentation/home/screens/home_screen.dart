@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:market_place_app/data/dummy_items.dart';
 import 'package:market_place_app/presentation/home/components/carousel_widget.dart';
+import 'package:market_place_app/presentation/home/components/icon_with_badge.dart';
 import 'package:market_place_app/presentation/home/components/persistent_header.dart';
 import 'package:market_place_app/presentation/home/components/product_actions.dart';
 import 'package:market_place_app/presentation/home/components/product_card.dart';
@@ -29,14 +30,16 @@ class _HomeScreenState extends State<HomeScreen>
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.shopping_bag_outlined,
+                icon: const IconWithBadge(
+                  icon: Icon(Icons.shopping_bag_outlined),
+                  badgeText: "1",
                 ),
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.comment_outlined,
+                icon: const IconWithBadge(
+                  icon: Icon(Icons.comment_outlined),
+                  badgeText: "9+",
                 ),
               ),
             ],
