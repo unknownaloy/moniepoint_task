@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:market_place_app/presentation/home/screens/coming_soon.dart';
 import 'package:market_place_app/presentation/home/screens/home_screen.dart';
+import 'package:market_place_app/presentation/settings/settings_screen.dart';
 
 class MarketPlaceHome extends StatefulWidget {
   const MarketPlaceHome({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _MarketPlaceHomeState extends State<MarketPlaceHome> {
     const HomeScreen(),
     const ComingSoon(),
     const ComingSoon(),
-    const ComingSoon(),
+    const SettingsScreen(),
   ];
 
   void _handlePageTap(int index) {

@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:market_place_app/presentation/market_place_home.dart';
 import 'package:market_place_app/themes/dark_theme/dark_theme.dart';
 import 'package:market_place_app/themes/light_theme/light_theme.dart';
+import 'package:market_place_app/themes/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider()..initializeTheme(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
