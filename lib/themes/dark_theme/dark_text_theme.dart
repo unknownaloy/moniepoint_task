@@ -8,5 +8,8 @@ final TextTheme kDarkTextTheme = TextTheme(
   bodyMedium: kDarkBodyMediumTextStyle,
   bodyLarge: kDarkBodyLargeTextStyle, // Implemented
   titleLarge: kDarkTitleLargeTextStyle, // Implemented
+  titleMedium: kDarkTitleMediumTextStyle,
+  titleSmall: kDarkTitleSmallTextStyle,
+  labelLarge: kDarkLabelLargeTextStyle,
   labelSmall: kDarkLabelSmallTextStyle, // Implemented
 );

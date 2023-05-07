@@ -138,6 +138,7 @@ class _ProductFullViewState extends State<ProductFullView>
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -234,7 +235,12 @@ class _ProductFullViewState extends State<ProductFullView>
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Icon(Icons.storefront_outlined),
+                              Icon(
+                                Icons.storefront_outlined,
+                                color: brightness == Brightness.dark
+                                    ? const Color(0xff7C7E87)
+                                    : null,
+                              ),
                               const SizedBox(
                                 width: 8,
                               ),

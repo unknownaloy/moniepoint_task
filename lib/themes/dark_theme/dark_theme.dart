@@ -11,6 +11,9 @@ ThemeData darkTheme() {
         color: Colors.black,
       ),
     ),
+    iconTheme: const IconThemeData(
+      color: Colors.black,
+    ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     textTheme: kDarkTextTheme,
     chipTheme: const ChipThemeData(
@@ -19,8 +22,8 @@ ThemeData darkTheme() {
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       elevation: 0.0,
       selectedItemColor: const Color(0xff202020),
-      unselectedItemColor: const Color(0xff93959D),
-      backgroundColor: const Color(0xffF1F2F4),
+      unselectedItemColor: Colors.white,
+      backgroundColor: const Color(0xff8A8A8A),
       showSelectedLabels: true,
       showUnselectedLabels: true,
       selectedLabelStyle: GoogleFonts.jost(
@@ -31,20 +34,12 @@ ThemeData darkTheme() {
         color: Color(0xff4BB198),
       ),
       unselectedIconTheme: const IconThemeData(
-        color: Color(0xff93959D),
+        color: Colors.white,
       ),
     ),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          const Color(0xff3474EF),
-        ),
-        minimumSize: MaterialStateProperty.all(
-          const Size.fromHeight(
-            64,
-          ),
-        ),
-      ),
+    dividerTheme: const DividerThemeData(
+      thickness: 1,
+      color: Colors.white,
     ),
   );
 }

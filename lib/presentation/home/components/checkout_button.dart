@@ -5,12 +5,13 @@ class CheckoutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
     return Container(
       padding:
       const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: brightness == Brightness.light ? Colors.white : const Color(0xff8A8A8A),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -27,7 +28,9 @@ class CheckoutButton extends StatelessWidget {
             children: [
               Text(
                 "Total Price",
-                style: Theme.of(context).textTheme.labelLarge,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: brightness == Brightness.dark ? Colors.white : null,
+                ),
               ),
               Text(
                 "\$18.00",

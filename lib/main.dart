@@ -20,13 +20,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Market Place',
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme(),
-      darkTheme: darkTheme(),
-      themeMode: ThemeMode.light,
-      home: const MarketPlaceHome(),
+    return Consumer<ThemeProvider>(
+      builder: (_, model, __) => MaterialApp(
+        title: 'Market Place',
+        debugShowCheckedModeBanner: false,
+        theme: lightTheme(),
+        darkTheme: darkTheme(),
+        themeMode: model.themeMode,
+        home: const MarketPlaceHome(),
+      ),
     );
   }
 }

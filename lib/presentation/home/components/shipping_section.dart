@@ -5,6 +5,7 @@ class ShippingSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -19,16 +20,16 @@ class ShippingSection extends StatelessWidget {
           text: TextSpan(
             text: 'Delivery:  ',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xff7C7E87),
-                ),
+              fontWeight: FontWeight.w600,
+              color: const Color(0xff7C7E87),
+            ),
             children: <TextSpan>[
               TextSpan(
                 text: "Shipping from Jakarta, Indonesia",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
+                  fontWeight: FontWeight.w700,
+                  color: brightness == Brightness.light ? Colors.black : Colors.white,
+                ),
               ),
             ],
           ),
@@ -40,16 +41,16 @@ class ShippingSection extends StatelessWidget {
           text: TextSpan(
             text: 'Shipping:  ',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xff7C7E87),
-                ),
+              fontWeight: FontWeight.w600,
+              color: const Color(0xff7C7E87),
+            ),
             children: <TextSpan>[
               TextSpan(
                 text: "Free International Shipping",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
+                  fontWeight: FontWeight.w700,
+                  color: brightness == Brightness.light ? Colors.black : Colors.white,
+                ),
               ),
             ],
           ),
@@ -61,16 +62,16 @@ class ShippingSection extends StatelessWidget {
           text: TextSpan(
             text: 'Arrive:  ',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xff7C7E87),
-                ),
+              fontWeight: FontWeight.w600,
+              color: const Color(0xff7C7E87),
+            ),
             children: <TextSpan>[
               TextSpan(
                 text: "Estimated arrival on 25 - 27 Oct 2022",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
+                  fontWeight: FontWeight.w700,
+                  color: brightness == Brightness.light ? Colors.black : Colors.white,
+                ),
               ),
             ],
           ),

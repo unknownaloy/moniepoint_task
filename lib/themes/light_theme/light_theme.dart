@@ -39,17 +39,5 @@ ThemeData lightTheme() {
       thickness: 1,
       color: Color(0xffD1D1D1),
     ),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          const Color(0xff3474EF),
-        ),
-        minimumSize: MaterialStateProperty.all(
-          const Size.fromHeight(
-            64,
-          ),
-        ),
-      ),
-    ),
   );
 }
