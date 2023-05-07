@@ -30,6 +30,12 @@ final kLightTitleMediumTextStyle = _baseFont.copyWith(
   fontWeight: FontWeight.w600,
 );
 
+final kLightTitleSmallTextStyle = _baseFont.copyWith(
+  color: Colors.white,
+  fontSize: 18,
+  fontWeight: FontWeight.w600,
+);
+
 /// Body text styles
 final kLightBodyLargeTextStyle = _baseFont.copyWith(
   color: const Color(0xff4BB198),

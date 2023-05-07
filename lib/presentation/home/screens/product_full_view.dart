@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:market_place_app/data/model/item_model.dart';
+import 'package:market_place_app/presentation/home/components/checkout_button.dart';
 import 'package:market_place_app/presentation/home/components/custom_cell_content.dart';
 import 'package:market_place_app/presentation/home/components/description_section.dart';
 import 'package:market_place_app/presentation/home/components/rating_review_sold_tile.dart';
@@ -401,54 +402,7 @@ class _ProductFullViewState extends State<ProductFullView>
               opacity: _bottomOpacityAnimation.value,
               child: SlideTransition(
                 position: _bottomSlideAnimation,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                  width: double.infinity,
-                  color: Colors.red,
-                  child: Row(
-                    children: [
-                      Text("18.00"),
-                      const Spacer(),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8),
-                                alignment: Alignment.center,
-                                decoration: const BoxDecoration(
-                                  color: Colors.blueAccent,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(8),
-                                    bottomLeft: Radius.circular(8),
-                                  ),
-                                ),
-                                child: Text("1"),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8),
-                                alignment: Alignment.center,
-                                decoration: const BoxDecoration(
-                                  color: Colors.blueAccent,
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(8),
-                                    bottomRight: Radius.circular(8),
-                                  ),
-                                ),
-                                child: Text("Buy Now"),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                child: const CheckoutButton(),
               ),
             ),
           ],
