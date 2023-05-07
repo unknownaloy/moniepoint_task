@@ -4,6 +4,7 @@ import 'package:market_place_app/presentation/home/components/carousel_widget.da
 import 'package:market_place_app/presentation/home/components/persistent_header.dart';
 import 'package:market_place_app/presentation/home/components/product_actions.dart';
 import 'package:market_place_app/presentation/home/components/product_card.dart';
+import 'package:market_place_app/presentation/home/components/search_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,7 +13,8 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMixin {
+class _HomeScreenState extends State<HomeScreen>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -23,15 +25,7 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
             expandedHeight: 320.0,
             floating: false,
             pinned: true,
-            // forceElevated: innerBoxIsScrolled,
-            title: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.grey),
-                color: Colors.transparent,
-              ),
-            ),
+            title: const SearchWidget(),
             actions: [
               IconButton(
                 onPressed: () {},
@@ -56,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
           SliverPersistentHeader(
             pinned: true,
             delegate: PersistentHeader(
-
               color: const Color(0xffF9F9F9),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -84,11 +77,11 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
                 crossAxisCount: 2,
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 16,
-                childAspectRatio: 3/4,
+                childAspectRatio: 3 / 4,
               ),
               delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      final item = dummyItems[index];
+                (BuildContext context, int index) {
+                  final item = dummyItems[index];
                   return ProductCard(item: item);
                 },
                 childCount: dummyItems.length,
