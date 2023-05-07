@@ -17,26 +17,36 @@ class _CarouselWidgetState extends State<CarouselWidget> {
   late Timer _timer;
 
   final _carousels = <Widget>[
-    Container(
+    SizedBox(
       key: const Key("one"),
-      color: Colors.red,
       width: double.infinity,
+      child: Image.asset(
+        "assets/images/carousel_01.jpg",
+        fit: BoxFit.cover,
+      ),
     ),
-    Container(
+    SizedBox(
       key: const Key("two"),
-      color: Colors.yellowAccent,
       width: double.infinity,
+      child: Image.asset(
+        "assets/images/carousel_02.jpg",
+        fit: BoxFit.cover,
+      ),
     ),
-    Container(
-      key: const Key("three"),
-      color: Colors.blue,
-      width: double.infinity,
-    ),
-    Container(
+    SizedBox(
       key: const Key("four"),
-      color: Colors.green,
       width: double.infinity,
+      child: Image.asset("assets/images/carousel_03.jpg", fit: BoxFit.cover,),
     ),
+    SizedBox(
+      key: const Key("three"),
+      width: double.infinity,
+      child: Image.asset(
+        "assets/images/carousel_04.jpg",
+        fit: BoxFit.cover,
+      ),
+    ),
+    
   ];
 
   @override
