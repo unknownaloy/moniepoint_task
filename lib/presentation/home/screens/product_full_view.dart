@@ -66,6 +66,13 @@ class _ProductFullViewState extends State<ProductFullView>
       ),
     );
 
+    _upperSectionOpacity = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _upperSectionController,
+        curve: const Interval(0.0, 0.20, curve: Curves.easeIn),
+      ),
+    );
+
     // This has to run for half the time of [_upperSectionController]
     _upperMarginController = AnimationController(
       vsync: this,
@@ -166,7 +173,14 @@ class _ProductFullViewState extends State<ProductFullView>
         ],
       ),
       body: AnimatedBuilder(
-        animation: _upperSectionController,
+        // animation: _upperSectionController,
+        animation: Listenable.merge([
+          _upperSectionController,
+          _upperMarginController,
+          _bottomController,
+          _bottomSlideController,
+          _middleOpacityController,
+        ]),
         builder: (context, child) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
