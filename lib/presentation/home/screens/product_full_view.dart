@@ -21,125 +21,89 @@ class ProductFullView extends StatefulWidget {
 
 class _ProductFullViewState extends State<ProductFullView>
     with TickerProviderStateMixin {
-  late final AnimationController _upperSectionController;
+  late final AnimationController _animationController;
   late final Animation<double> _upperSectionOpacity;
 
-  late final AnimationController _upperMarginController;
   late final Animation<EdgeInsetsGeometry> _upperMarginAnimation;
 
-  late final AnimationController _bottomController;
   late final Animation<double> _bottomOpacityAnimation;
 
-  late final AnimationController _bottomSlideController;
   late final Animation<Offset> _bottomSlideAnimation;
 
-  late final AnimationController _middleOpacityController;
   late final Animation<double> _middleOpacityAnimation;
-
-  void _startAnimations() async {
-    _upperSectionController.forward();
-
-    await Future.delayed(const Duration(milliseconds: 500));
-    _upperMarginController.forward();
-
-    _middleOpacityController.forward();
-
-    _bottomController.forward();
-    await Future.delayed(const Duration(milliseconds: 250));
-
-    _bottomSlideController.forward();
-  }
 
   @override
   void initState() {
     super.initState();
 
-    _upperSectionController = AnimationController(
+    _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
     );
 
     _upperSectionOpacity = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
-        parent: _upperSectionController,
-        curve: Curves.easeIn,
-      ),
-    );
-
-    _upperSectionOpacity = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _upperSectionController,
+        parent: _animationController,
         curve: const Interval(0.0, 0.20, curve: Curves.easeIn),
       ),
     );
 
     // This has to run for half the time of [_upperSectionController]
-    _upperMarginController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-
     _upperMarginAnimation = Tween<EdgeInsetsGeometry>(
       begin: const EdgeInsets.only(top: 56),
       end: EdgeInsets.zero,
     ).animate(
       CurvedAnimation(
-        parent: _upperMarginController,
-        curve: Curves.easeIn,
+        parent: _animationController,
+        curve: const Interval(
+          0.5,
+          1.0,
+          curve: Curves.easeIn,
+        ),
       ),
-    );
-
-    _bottomController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
     );
 
     _bottomOpacityAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
-        parent: _bottomController,
-        curve: Curves.easeIn,
+        parent: _animationController,
+        curve: const Interval(
+          0.5,
+          1.0,
+          curve: Curves.easeIn,
+        ),
       ),
-    );
-
-    _bottomSlideController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
     );
 
     _bottomSlideAnimation =
         Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero).animate(
       CurvedAnimation(
-        parent: _bottomSlideController,
-        curve: Curves.easeIn,
-      ),
-    );
-
-    _middleOpacityController = AnimationController(
-      vsync: this,
-      duration: const Duration(
-        milliseconds: 500,
+        parent: _animationController,
+        curve: const Interval(
+          0.3,
+          1.0,
+          curve: Curves.easeIn,
+        ),
       ),
     );
 
     _middleOpacityAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
-        parent: _middleOpacityController,
-        curve: Curves.easeIn,
+        parent: _animationController,
+        curve: const Interval(
+          0.5,
+          1.0,
+          curve: Curves.easeIn,
+        ),
       ),
     );
 
-    _startAnimations();
+    _animationController.forward();
   }
 
   @override
   void dispose() {
-    _upperSectionController.dispose();
-    _upperMarginController.dispose();
+    _animationController.dispose();
 
-    _bottomController.dispose();
-    _bottomSlideController.dispose();
-
-    _middleOpacityController.dispose();
     super.dispose();
   }
 
@@ -174,13 +138,7 @@ class _ProductFullViewState extends State<ProductFullView>
       ),
       body: AnimatedBuilder(
         // animation: _upperSectionController,
-        animation: Listenable.merge([
-          _upperSectionController,
-          _upperMarginController,
-          _bottomController,
-          _bottomSlideController,
-          _middleOpacityController,
-        ]),
+        animation: _animationController,
         builder: (context, child) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
